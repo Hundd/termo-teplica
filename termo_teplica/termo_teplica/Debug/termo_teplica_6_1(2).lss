@@ -1,0 +1,834 @@
+
+termo_teplica_6_1(2).elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         0000044c  00000000  00000000  00000094  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .data         00000002  00800060  0000044c  000004e0  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  2 .bss          00000001  00800062  00800062  000004e2  2**0
+                  ALLOC
+  3 .comment      00000030  00000000  00000000  000004e2  2**0
+                  CONTENTS, READONLY
+  4 .debug_aranges 00000060  00000000  00000000  00000512  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  5 .debug_info   00000914  00000000  00000000  00000572  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_abbrev 0000021f  00000000  00000000  00000e86  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_line   0000028a  00000000  00000000  000010a5  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_frame  0000019c  00000000  00000000  00001330  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_str    00000282  00000000  00000000  000014cc  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_loc    00000955  00000000  00000000  0000174e  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_ranges 00000050  00000000  00000000  000020a3  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	12 c0       	rjmp	.+36     	; 0x26 <__ctors_end>
+   2:	2c c0       	rjmp	.+88     	; 0x5c <__bad_interrupt>
+   4:	2b c0       	rjmp	.+86     	; 0x5c <__bad_interrupt>
+   6:	2a c0       	rjmp	.+84     	; 0x5c <__bad_interrupt>
+   8:	29 c0       	rjmp	.+82     	; 0x5c <__bad_interrupt>
+   a:	28 c0       	rjmp	.+80     	; 0x5c <__bad_interrupt>
+   c:	27 c0       	rjmp	.+78     	; 0x5c <__bad_interrupt>
+   e:	26 c0       	rjmp	.+76     	; 0x5c <__bad_interrupt>
+  10:	25 c0       	rjmp	.+74     	; 0x5c <__bad_interrupt>
+  12:	79 c1       	rjmp	.+754    	; 0x306 <__vector_9>
+  14:	23 c0       	rjmp	.+70     	; 0x5c <__bad_interrupt>
+  16:	22 c0       	rjmp	.+68     	; 0x5c <__bad_interrupt>
+  18:	21 c0       	rjmp	.+66     	; 0x5c <__bad_interrupt>
+  1a:	20 c0       	rjmp	.+64     	; 0x5c <__bad_interrupt>
+  1c:	1f c0       	rjmp	.+62     	; 0x5c <__bad_interrupt>
+  1e:	1e c0       	rjmp	.+60     	; 0x5c <__bad_interrupt>
+  20:	1d c0       	rjmp	.+58     	; 0x5c <__bad_interrupt>
+  22:	1c c0       	rjmp	.+56     	; 0x5c <__bad_interrupt>
+  24:	1b c0       	rjmp	.+54     	; 0x5c <__bad_interrupt>
+
+00000026 <__ctors_end>:
+  26:	11 24       	eor	r1, r1
+  28:	1f be       	out	0x3f, r1	; 63
+  2a:	cf e5       	ldi	r28, 0x5F	; 95
+  2c:	d4 e0       	ldi	r29, 0x04	; 4
+  2e:	de bf       	out	0x3e, r29	; 62
+  30:	cd bf       	out	0x3d, r28	; 61
+
+00000032 <__do_copy_data>:
+  32:	10 e0       	ldi	r17, 0x00	; 0
+  34:	a0 e6       	ldi	r26, 0x60	; 96
+  36:	b0 e0       	ldi	r27, 0x00	; 0
+  38:	ec e4       	ldi	r30, 0x4C	; 76
+  3a:	f4 e0       	ldi	r31, 0x04	; 4
+  3c:	02 c0       	rjmp	.+4      	; 0x42 <__SREG__+0x3>
+  3e:	05 90       	lpm	r0, Z+
+  40:	0d 92       	st	X+, r0
+  42:	a2 36       	cpi	r26, 0x62	; 98
+  44:	b1 07       	cpc	r27, r17
+  46:	d9 f7       	brne	.-10     	; 0x3e <__SP_H__>
+
+00000048 <__do_clear_bss>:
+  48:	20 e0       	ldi	r18, 0x00	; 0
+  4a:	a2 e6       	ldi	r26, 0x62	; 98
+  4c:	b0 e0       	ldi	r27, 0x00	; 0
+  4e:	01 c0       	rjmp	.+2      	; 0x52 <.do_clear_bss_start>
+
+00000050 <.do_clear_bss_loop>:
+  50:	1d 92       	st	X+, r1
+
+00000052 <.do_clear_bss_start>:
+  52:	a3 36       	cpi	r26, 0x63	; 99
+  54:	b2 07       	cpc	r27, r18
+  56:	e1 f7       	brne	.-8      	; 0x50 <.do_clear_bss_loop>
+  58:	9d d1       	rcall	.+826    	; 0x394 <main>
+  5a:	f6 c1       	rjmp	.+1004   	; 0x448 <_exit>
+
+0000005c <__bad_interrupt>:
+  5c:	d1 cf       	rjmp	.-94     	; 0x0 <__vectors>
+
+0000005e <reset>:
+		if(temperature_byte2 >= high_temp)  PORTD |= (1<<PD2);
+    }
+}
+
+void reset(volatile uint8_t *port,volatile uint8_t * ddr,uint8_t pin)
+{
+  5e:	cf 93       	push	r28
+  60:	df 93       	push	r29
+  62:	fc 01       	movw	r30, r24
+  64:	db 01       	movw	r26, r22
+	*ddr|=(1<<pin);
+  66:	2c 91       	ld	r18, X
+  68:	81 e0       	ldi	r24, 0x01	; 1
+  6a:	90 e0       	ldi	r25, 0x00	; 0
+  6c:	bc 01       	movw	r22, r24
+  6e:	02 c0       	rjmp	.+4      	; 0x74 <reset+0x16>
+  70:	66 0f       	add	r22, r22
+  72:	77 1f       	adc	r23, r23
+  74:	4a 95       	dec	r20
+  76:	e2 f7       	brpl	.-8      	; 0x70 <reset+0x12>
+  78:	ab 01       	movw	r20, r22
+  7a:	82 2f       	mov	r24, r18
+  7c:	86 2b       	or	r24, r22
+  7e:	8c 93       	st	X, r24
+	*port&=~(1<<pin);//pin off
+  80:	90 81       	ld	r25, Z
+  82:	86 2f       	mov	r24, r22
+  84:	80 95       	com	r24
+  86:	98 23       	and	r25, r24
+  88:	90 83       	st	Z, r25
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+  8a:	cd ee       	ldi	r28, 0xED	; 237
+  8c:	d2 e0       	ldi	r29, 0x02	; 2
+  8e:	21 97       	sbiw	r28, 0x01	; 1
+  90:	f1 f7       	brne	.-4      	; 0x8e <reset+0x30>
+  92:	00 c0       	rjmp	.+0      	; 0x94 <reset+0x36>
+  94:	00 00       	nop
+	_delay_us(500);
+	*port|=1<<pin;//pint on
+  96:	90 81       	ld	r25, Z
+  98:	49 2b       	or	r20, r25
+  9a:	40 83       	st	Z, r20
+	*ddr&=~(1<<pin);
+  9c:	9c 91       	ld	r25, X
+  9e:	89 23       	and	r24, r25
+  a0:	8c 93       	st	X, r24
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+  a2:	8b ed       	ldi	r24, 0xDB	; 219
+  a4:	95 e0       	ldi	r25, 0x05	; 5
+  a6:	01 97       	sbiw	r24, 0x01	; 1
+  a8:	f1 f7       	brne	.-4      	; 0xa6 <reset+0x48>
+  aa:	00 c0       	rjmp	.+0      	; 0xac <reset+0x4e>
+  ac:	00 00       	nop
+	_delay_ms(1);
+	
+	
+}
+  ae:	df 91       	pop	r29
+  b0:	cf 91       	pop	r28
+  b2:	08 95       	ret
+
+000000b4 <SendToPort1>:
+void SendToPort1(volatile uint8_t *port,volatile uint8_t *ddr,uint8_t pin)
+{	cli();
+  b4:	fb 01       	movw	r30, r22
+  b6:	f8 94       	cli
+	*ddr|=(1<<pin);
+  b8:	60 81       	ld	r22, Z
+  ba:	21 e0       	ldi	r18, 0x01	; 1
+  bc:	30 e0       	ldi	r19, 0x00	; 0
+  be:	d9 01       	movw	r26, r18
+  c0:	02 c0       	rjmp	.+4      	; 0xc6 <SendToPort1+0x12>
+  c2:	aa 0f       	add	r26, r26
+  c4:	bb 1f       	adc	r27, r27
+  c6:	4a 95       	dec	r20
+  c8:	e2 f7       	brpl	.-8      	; 0xc2 <SendToPort1+0xe>
+  ca:	ad 01       	movw	r20, r26
+  cc:	26 2f       	mov	r18, r22
+  ce:	2a 2b       	or	r18, r26
+  d0:	20 83       	st	Z, r18
+	*port&=~(1<<pin);//pin off
+  d2:	dc 01       	movw	r26, r24
+  d4:	2c 91       	ld	r18, X
+  d6:	40 95       	com	r20
+  d8:	24 23       	and	r18, r20
+  da:	2c 93       	st	X, r18
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+  dc:	b8 e0       	ldi	r27, 0x08	; 8
+  de:	ba 95       	dec	r27
+  e0:	f1 f7       	brne	.-4      	; 0xde <SendToPort1+0x2a>
+	_delay_us(4);
+	*ddr&=~(1<<pin);
+  e2:	80 81       	ld	r24, Z
+  e4:	48 23       	and	r20, r24
+  e6:	40 83       	st	Z, r20
+	//*port|=1<<pin;//pint on
+	sei();
+  e8:	78 94       	sei
+  ea:	88 e9       	ldi	r24, 0x98	; 152
+  ec:	8a 95       	dec	r24
+  ee:	f1 f7       	brne	.-4      	; 0xec <SendToPort1+0x38>
+  f0:	08 95       	ret
+
+000000f2 <SendToPort0>:
+	_delay_us(76);
+}
+void SendToPort0(volatile uint8_t *port,volatile uint8_t *ddr,uint8_t pin)
+{	cli();
+  f2:	fb 01       	movw	r30, r22
+  f4:	f8 94       	cli
+	*ddr|=(1<<pin);
+  f6:	60 81       	ld	r22, Z
+  f8:	21 e0       	ldi	r18, 0x01	; 1
+  fa:	30 e0       	ldi	r19, 0x00	; 0
+  fc:	d9 01       	movw	r26, r18
+  fe:	02 c0       	rjmp	.+4      	; 0x104 <SendToPort0+0x12>
+ 100:	aa 0f       	add	r26, r26
+ 102:	bb 1f       	adc	r27, r27
+ 104:	4a 95       	dec	r20
+ 106:	e2 f7       	brpl	.-8      	; 0x100 <SendToPort0+0xe>
+ 108:	ad 01       	movw	r20, r26
+ 10a:	26 2f       	mov	r18, r22
+ 10c:	2a 2b       	or	r18, r26
+ 10e:	20 83       	st	Z, r18
+	*port&=~(1<<pin);//pin off
+ 110:	dc 01       	movw	r26, r24
+ 112:	2c 91       	ld	r18, X
+ 114:	40 95       	com	r20
+ 116:	24 23       	and	r18, r20
+ 118:	2c 93       	st	X, r18
+ 11a:	b0 e8       	ldi	r27, 0x80	; 128
+ 11c:	ba 95       	dec	r27
+ 11e:	f1 f7       	brne	.-4      	; 0x11c <SendToPort0+0x2a>
+	_delay_us(64);
+	*ddr&=~(1<<pin);
+ 120:	80 81       	ld	r24, Z
+ 122:	48 23       	and	r20, r24
+ 124:	40 83       	st	Z, r20
+ 126:	80 e2       	ldi	r24, 0x20	; 32
+ 128:	8a 95       	dec	r24
+ 12a:	f1 f7       	brne	.-4      	; 0x128 <SendToPort0+0x36>
+	_delay_us(16);
+	sei();
+ 12c:	78 94       	sei
+ 12e:	08 95       	ret
+
+00000130 <SendByteToPort>:
+}
+	void SendByteToPort(volatile uint8_t *port,volatile uint8_t *ddr,uint8_t pin,uint8_t byte)
+	{	int i; int 	mask=1;
+ 130:	cf 92       	push	r12
+ 132:	df 92       	push	r13
+ 134:	ef 92       	push	r14
+ 136:	ff 92       	push	r15
+ 138:	0f 93       	push	r16
+ 13a:	1f 93       	push	r17
+ 13c:	cf 93       	push	r28
+ 13e:	df 93       	push	r29
+ 140:	7c 01       	movw	r14, r24
+ 142:	8b 01       	movw	r16, r22
+ 144:	c4 2e       	mov	r12, r20
+ 146:	d2 2e       	mov	r13, r18
+ 148:	c8 e0       	ldi	r28, 0x08	; 8
+ 14a:	d0 e0       	ldi	r29, 0x00	; 0
+		
+		for (i=0;i<8;i++)
+		{	if (byte&mask)
+ 14c:	d0 fe       	sbrs	r13, 0
+ 14e:	05 c0       	rjmp	.+10     	; 0x15a <SendByteToPort+0x2a>
+			SendToPort1(port,ddr,pin);
+ 150:	4c 2d       	mov	r20, r12
+ 152:	b8 01       	movw	r22, r16
+ 154:	c7 01       	movw	r24, r14
+ 156:	ae df       	rcall	.-164    	; 0xb4 <SendToPort1>
+ 158:	04 c0       	rjmp	.+8      	; 0x162 <SendByteToPort+0x32>
+			else SendToPort0(port,ddr,pin);
+ 15a:	4c 2d       	mov	r20, r12
+ 15c:	b8 01       	movw	r22, r16
+ 15e:	c7 01       	movw	r24, r14
+ 160:	c8 df       	rcall	.-112    	; 0xf2 <SendToPort0>
+			byte>>=1;
+ 162:	d6 94       	lsr	r13
+ 164:	21 97       	sbiw	r28, 0x01	; 1
+	sei();
+}
+	void SendByteToPort(volatile uint8_t *port,volatile uint8_t *ddr,uint8_t pin,uint8_t byte)
+	{	int i; int 	mask=1;
+		
+		for (i=0;i<8;i++)
+ 166:	20 97       	sbiw	r28, 0x00	; 0
+ 168:	89 f7       	brne	.-30     	; 0x14c <SendByteToPort+0x1c>
+		
+		}
+	
+		
+
+	}
+ 16a:	df 91       	pop	r29
+ 16c:	cf 91       	pop	r28
+ 16e:	1f 91       	pop	r17
+ 170:	0f 91       	pop	r16
+ 172:	ff 90       	pop	r15
+ 174:	ef 90       	pop	r14
+ 176:	df 90       	pop	r13
+ 178:	cf 90       	pop	r12
+ 17a:	08 95       	ret
+
+0000017c <ReadBytesFromPort>:
+	void ReadBytesFromPort(volatile uint8_t *port,volatile uint8_t *ddr,volatile uint8_t *port_pin,uint8_t pin,uint8_t *bytes,uint8_t number_of_bytes)
+	{
+ 17c:	4f 92       	push	r4
+ 17e:	5f 92       	push	r5
+ 180:	6f 92       	push	r6
+ 182:	7f 92       	push	r7
+ 184:	8f 92       	push	r8
+ 186:	9f 92       	push	r9
+ 188:	af 92       	push	r10
+ 18a:	bf 92       	push	r11
+ 18c:	cf 92       	push	r12
+ 18e:	df 92       	push	r13
+ 190:	ef 92       	push	r14
+ 192:	ff 92       	push	r15
+ 194:	0f 93       	push	r16
+ 196:	1f 93       	push	r17
+ 198:	cf 93       	push	r28
+ 19a:	df 93       	push	r29
+ 19c:	2c 01       	movw	r4, r24
+ 19e:	fb 01       	movw	r30, r22
+		int i=0;//counter of bytes
+		int j=0;//counter of bits
+		cli();
+ 1a0:	f8 94       	cli
+		for (i=0;i<number_of_bytes;i++)
+ 1a2:	ae 2c       	mov	r10, r14
+ 1a4:	b1 2c       	mov	r11, r1
+ 1a6:	1a 14       	cp	r1, r10
+ 1a8:	1b 04       	cpc	r1, r11
+ 1aa:	0c f0       	brlt	.+2      	; 0x1ae <ReadBytesFromPort+0x32>
+ 1ac:	4e c0       	rjmp	.+156    	; 0x24a <ReadBytesFromPort+0xce>
+		{	bytes[i]=0;
+			for (j=0;j<8;j++)
+			{
+				*ddr|=(1<<pin);
+ 1ae:	61 e0       	ldi	r22, 0x01	; 1
+ 1b0:	70 e0       	ldi	r23, 0x00	; 0
+ 1b2:	02 2e       	mov	r0, r18
+ 1b4:	02 c0       	rjmp	.+4      	; 0x1ba <ReadBytesFromPort+0x3e>
+ 1b6:	66 0f       	add	r22, r22
+ 1b8:	77 1f       	adc	r23, r23
+ 1ba:	0a 94       	dec	r0
+ 1bc:	e2 f7       	brpl	.-8      	; 0x1b6 <ReadBytesFromPort+0x3a>
+ 1be:	86 2e       	mov	r8, r22
+				*port&=~(1<<pin);//pin off
+ 1c0:	96 2e       	mov	r9, r22
+ 1c2:	90 94       	com	r9
+ 1c4:	e0 2e       	mov	r14, r16
+ 1c6:	f1 2e       	mov	r15, r17
+	void ReadBytesFromPort(volatile uint8_t *port,volatile uint8_t *ddr,volatile uint8_t *port_pin,uint8_t pin,uint8_t *bytes,uint8_t number_of_bytes)
+	{
+		int i=0;//counter of bytes
+		int j=0;//counter of bits
+		cli();
+		for (i=0;i<number_of_bytes;i++)
+ 1c8:	c1 2c       	mov	r12, r1
+ 1ca:	d1 2c       	mov	r13, r1
+		{	bytes[i]=0;
+			for (j=0;j<8;j++)
+ 1cc:	71 2c       	mov	r7, r1
+ 1ce:	61 2c       	mov	r6, r1
+				*port&=~(1<<pin);//pin off
+				_delay_us(4);
+				*ddr&=~(1<<pin);
+				_delay_us(32);
+				//bytes[i]|=(*port_pin)&0x80;
+				bytes[i]|=((*port_pin)&(1<<pin))<<(7-pin);
+ 1d0:	07 e0       	ldi	r16, 0x07	; 7
+ 1d2:	10 e0       	ldi	r17, 0x00	; 0
+ 1d4:	02 1b       	sub	r16, r18
+ 1d6:	11 09       	sbc	r17, r1
+ 1d8:	d7 01       	movw	r26, r14
+	{
+		int i=0;//counter of bytes
+		int j=0;//counter of bits
+		cli();
+		for (i=0;i<number_of_bytes;i++)
+		{	bytes[i]=0;
+ 1da:	1c 92       	st	X, r1
+			for (j=0;j<8;j++)
+ 1dc:	27 2d       	mov	r18, r7
+ 1de:	36 2d       	mov	r19, r6
+			{
+				*ddr|=(1<<pin);
+ 1e0:	80 81       	ld	r24, Z
+ 1e2:	88 29       	or	r24, r8
+ 1e4:	80 83       	st	Z, r24
+				*port&=~(1<<pin);//pin off
+ 1e6:	e2 01       	movw	r28, r4
+ 1e8:	88 81       	ld	r24, Y
+ 1ea:	89 21       	and	r24, r9
+ 1ec:	88 83       	st	Y, r24
+ 1ee:	d8 e0       	ldi	r29, 0x08	; 8
+ 1f0:	da 95       	dec	r29
+ 1f2:	f1 f7       	brne	.-4      	; 0x1f0 <ReadBytesFromPort+0x74>
+				_delay_us(4);
+				*ddr&=~(1<<pin);
+ 1f4:	80 81       	ld	r24, Z
+ 1f6:	89 21       	and	r24, r9
+ 1f8:	80 83       	st	Z, r24
+ 1fa:	80 e4       	ldi	r24, 0x40	; 64
+ 1fc:	8a 95       	dec	r24
+ 1fe:	f1 f7       	brne	.-4      	; 0x1fc <ReadBytesFromPort+0x80>
+				_delay_us(32);
+				//bytes[i]|=(*port_pin)&0x80;
+				bytes[i]|=((*port_pin)&(1<<pin))<<(7-pin);
+ 200:	ea 01       	movw	r28, r20
+ 202:	88 81       	ld	r24, Y
+ 204:	90 e0       	ldi	r25, 0x00	; 0
+ 206:	86 23       	and	r24, r22
+ 208:	97 23       	and	r25, r23
+ 20a:	00 2e       	mov	r0, r16
+ 20c:	02 c0       	rjmp	.+4      	; 0x212 <ReadBytesFromPort+0x96>
+ 20e:	88 0f       	add	r24, r24
+ 210:	99 1f       	adc	r25, r25
+ 212:	0a 94       	dec	r0
+ 214:	e2 f7       	brpl	.-8      	; 0x20e <ReadBytesFromPort+0x92>
+ 216:	9c 91       	ld	r25, X
+ 218:	89 2b       	or	r24, r25
+				if(j<7) bytes[i]>>=1;
+ 21a:	27 30       	cpi	r18, 0x07	; 7
+ 21c:	31 05       	cpc	r19, r1
+ 21e:	14 f0       	brlt	.+4      	; 0x224 <ReadBytesFromPort+0xa8>
+				*port&=~(1<<pin);//pin off
+				_delay_us(4);
+				*ddr&=~(1<<pin);
+				_delay_us(32);
+				//bytes[i]|=(*port_pin)&0x80;
+				bytes[i]|=((*port_pin)&(1<<pin))<<(7-pin);
+ 220:	8c 93       	st	X, r24
+ 222:	02 c0       	rjmp	.+4      	; 0x228 <ReadBytesFromPort+0xac>
+				if(j<7) bytes[i]>>=1;
+ 224:	86 95       	lsr	r24
+ 226:	8c 93       	st	X, r24
+ 228:	d8 e5       	ldi	r29, 0x58	; 88
+ 22a:	da 95       	dec	r29
+ 22c:	f1 f7       	brne	.-4      	; 0x22a <ReadBytesFromPort+0xae>
+		int i=0;//counter of bytes
+		int j=0;//counter of bits
+		cli();
+		for (i=0;i<number_of_bytes;i++)
+		{	bytes[i]=0;
+			for (j=0;j<8;j++)
+ 22e:	2f 5f       	subi	r18, 0xFF	; 255
+ 230:	3f 4f       	sbci	r19, 0xFF	; 255
+ 232:	28 30       	cpi	r18, 0x08	; 8
+ 234:	31 05       	cpc	r19, r1
+ 236:	a1 f6       	brne	.-88     	; 0x1e0 <ReadBytesFromPort+0x64>
+	void ReadBytesFromPort(volatile uint8_t *port,volatile uint8_t *ddr,volatile uint8_t *port_pin,uint8_t pin,uint8_t *bytes,uint8_t number_of_bytes)
+	{
+		int i=0;//counter of bytes
+		int j=0;//counter of bits
+		cli();
+		for (i=0;i<number_of_bytes;i++)
+ 238:	8f ef       	ldi	r24, 0xFF	; 255
+ 23a:	c8 1a       	sub	r12, r24
+ 23c:	d8 0a       	sbc	r13, r24
+ 23e:	cf ef       	ldi	r28, 0xFF	; 255
+ 240:	ec 1a       	sub	r14, r28
+ 242:	fc 0a       	sbc	r15, r28
+ 244:	ca 14       	cp	r12, r10
+ 246:	db 04       	cpc	r13, r11
+ 248:	3c f2       	brlt	.-114    	; 0x1d8 <ReadBytesFromPort+0x5c>
+				bytes[i]|=((*port_pin)&(1<<pin))<<(7-pin);
+				if(j<7) bytes[i]>>=1;
+				_delay_us(44);
+			}			
+		}
+		sei();
+ 24a:	78 94       	sei
+	}
+ 24c:	df 91       	pop	r29
+ 24e:	cf 91       	pop	r28
+ 250:	1f 91       	pop	r17
+ 252:	0f 91       	pop	r16
+ 254:	ff 90       	pop	r15
+ 256:	ef 90       	pop	r14
+ 258:	df 90       	pop	r13
+ 25a:	cf 90       	pop	r12
+ 25c:	bf 90       	pop	r11
+ 25e:	af 90       	pop	r10
+ 260:	9f 90       	pop	r9
+ 262:	8f 90       	pop	r8
+ 264:	7f 90       	pop	r7
+ 266:	6f 90       	pop	r6
+ 268:	5f 90       	pop	r5
+ 26a:	4f 90       	pop	r4
+ 26c:	08 95       	ret
+
+0000026e <ReadTemperature>:
+	
+	
+	uint8_t ReadTemperature(volatile uint8_t *port,volatile uint8_t *ddr,volatile uint8_t *port_pin,uint8_t pin)
+	{
+ 26e:	8f 92       	push	r8
+ 270:	9f 92       	push	r9
+ 272:	af 92       	push	r10
+ 274:	bf 92       	push	r11
+ 276:	cf 92       	push	r12
+ 278:	df 92       	push	r13
+ 27a:	ef 92       	push	r14
+ 27c:	ff 92       	push	r15
+ 27e:	0f 93       	push	r16
+ 280:	1f 93       	push	r17
+ 282:	cf 93       	push	r28
+ 284:	df 93       	push	r29
+ 286:	cd b7       	in	r28, 0x3d	; 61
+ 288:	de b7       	in	r29, 0x3e	; 62
+ 28a:	29 97       	sbiw	r28, 0x09	; 9
+ 28c:	0f b6       	in	r0, 0x3f	; 63
+ 28e:	f8 94       	cli
+ 290:	de bf       	out	0x3e, r29	; 62
+ 292:	0f be       	out	0x3f, r0	; 63
+ 294:	cd bf       	out	0x3d, r28	; 61
+ 296:	6c 01       	movw	r12, r24
+ 298:	5b 01       	movw	r10, r22
+ 29a:	4a 01       	movw	r8, r20
+ 29c:	f2 2e       	mov	r15, r18
+		
+		uint8_t temperature [9];
+		uint8_t temperature_byte;
+	//	uint8_t temperature_byte_l;
+	//	uint8_t temperature_sign=0;
+		reset(port,ddr,pin);
+ 29e:	42 2f       	mov	r20, r18
+ 2a0:	de de       	rcall	.-580    	; 0x5e <reset>
+		SendByteToPort(port,ddr,pin,0xCC);//select all devices
+ 2a2:	2c ec       	ldi	r18, 0xCC	; 204
+ 2a4:	4f 2d       	mov	r20, r15
+ 2a6:	b5 01       	movw	r22, r10
+ 2a8:	c6 01       	movw	r24, r12
+ 2aa:	42 df       	rcall	.-380    	; 0x130 <SendByteToPort>
+		SendByteToPort(port,ddr,pin,0xbe);//read memory
+ 2ac:	2e eb       	ldi	r18, 0xBE	; 190
+ 2ae:	4f 2d       	mov	r20, r15
+ 2b0:	b5 01       	movw	r22, r10
+ 2b2:	c6 01       	movw	r24, r12
+ 2b4:	3d df       	rcall	.-390    	; 0x130 <SendByteToPort>
+		ReadBytesFromPort(port,ddr,port_pin,pin,temperature,9);
+ 2b6:	0f 2e       	mov	r0, r31
+ 2b8:	f9 e0       	ldi	r31, 0x09	; 9
+ 2ba:	ef 2e       	mov	r14, r31
+ 2bc:	f0 2d       	mov	r31, r0
+ 2be:	8e 01       	movw	r16, r28
+ 2c0:	0f 5f       	subi	r16, 0xFF	; 255
+ 2c2:	1f 4f       	sbci	r17, 0xFF	; 255
+ 2c4:	2f 2d       	mov	r18, r15
+ 2c6:	a4 01       	movw	r20, r8
+ 2c8:	b5 01       	movw	r22, r10
+ 2ca:	c6 01       	movw	r24, r12
+ 2cc:	57 df       	rcall	.-338    	; 0x17c <ReadBytesFromPort>
+		temperature_byte=((temperature[0]&0xF0)>>4)|((temperature[1]&0xF)<<4);//здесь хранится целое значение температуры;
+ 2ce:	2a 81       	ldd	r18, Y+2	; 0x02
+ 2d0:	80 e1       	ldi	r24, 0x10	; 16
+ 2d2:	28 9f       	mul	r18, r24
+ 2d4:	90 01       	movw	r18, r0
+ 2d6:	11 24       	eor	r1, r1
+ 2d8:	89 81       	ldd	r24, Y+1	; 0x01
+ 2da:	82 95       	swap	r24
+ 2dc:	8f 70       	andi	r24, 0x0F	; 15
+		else if (temperature_byte/100) temperature_to_dispay[3]=1;
+		else temperature_to_dispay[3]=0;*/
+		
+		
+		return temperature_byte;
+	}
+ 2de:	82 2b       	or	r24, r18
+ 2e0:	29 96       	adiw	r28, 0x09	; 9
+ 2e2:	0f b6       	in	r0, 0x3f	; 63
+ 2e4:	f8 94       	cli
+ 2e6:	de bf       	out	0x3e, r29	; 62
+ 2e8:	0f be       	out	0x3f, r0	; 63
+ 2ea:	cd bf       	out	0x3d, r28	; 61
+ 2ec:	df 91       	pop	r29
+ 2ee:	cf 91       	pop	r28
+ 2f0:	1f 91       	pop	r17
+ 2f2:	0f 91       	pop	r16
+ 2f4:	ff 90       	pop	r15
+ 2f6:	ef 90       	pop	r14
+ 2f8:	df 90       	pop	r13
+ 2fa:	cf 90       	pop	r12
+ 2fc:	bf 90       	pop	r11
+ 2fe:	af 90       	pop	r10
+ 300:	9f 90       	pop	r9
+ 302:	8f 90       	pop	r8
+ 304:	08 95       	ret
+
+00000306 <__vector_9>:
+	
+	
+	ISR(TIMER0_OVF_vect)
+	{
+ 306:	1f 92       	push	r1
+ 308:	0f 92       	push	r0
+ 30a:	0f b6       	in	r0, 0x3f	; 63
+ 30c:	0f 92       	push	r0
+ 30e:	11 24       	eor	r1, r1
+ 310:	8f 93       	push	r24
+ 312:	9f 93       	push	r25
+		static uint8_t i=0;
+		uint8_t  temp;
+		const uint8_t mask = 0x3;
+		wdt_reset();
+ 314:	a8 95       	wdr
+		if(i)
+ 316:	80 91 62 00 	lds	r24, 0x0062
+ 31a:	88 23       	and	r24, r24
+ 31c:	69 f0       	breq	.+26     	; 0x338 <__vector_9+0x32>
+		{
+			
+			temp = PORTD;
+ 31e:	82 b3       	in	r24, 0x12	; 18
+			temp|=mask;
+			temp&=0xFE;
+ 320:	8e 7f       	andi	r24, 0xFE	; 254
+ 322:	82 60       	ori	r24, 0x02	; 2
+			PORTC=0xFF;
+ 324:	9f ef       	ldi	r25, 0xFF	; 255
+ 326:	95 bb       	out	0x15, r25	; 21
+			PORTD = temp;
+ 328:	82 bb       	out	0x12, r24	; 18
+			PORTC = ~temperature_byte1;			
+ 32a:	80 91 61 00 	lds	r24, 0x0061
+ 32e:	80 95       	com	r24
+ 330:	85 bb       	out	0x15, r24	; 21
+			i=0;
+ 332:	10 92 62 00 	sts	0x0062, r1
+ 336:	0d c0       	rjmp	.+26     	; 0x352 <__vector_9+0x4c>
+		}
+		else
+		{
+			
+			temp = PORTD;
+ 338:	82 b3       	in	r24, 0x12	; 18
+			temp|=mask;
+			temp&=0xFD;
+ 33a:	8d 7f       	andi	r24, 0xFD	; 253
+ 33c:	81 60       	ori	r24, 0x01	; 1
+			PORTC=0xFF;
+ 33e:	9f ef       	ldi	r25, 0xFF	; 255
+ 340:	95 bb       	out	0x15, r25	; 21
+			PORTD = temp;
+ 342:	82 bb       	out	0x12, r24	; 18
+			PORTC = ~temperature_byte2;			
+ 344:	80 91 60 00 	lds	r24, 0x0060
+ 348:	80 95       	com	r24
+ 34a:	85 bb       	out	0x15, r24	; 21
+			i=1;
+ 34c:	81 e0       	ldi	r24, 0x01	; 1
+ 34e:	80 93 62 00 	sts	0x0062, r24
+		}
+	}
+ 352:	9f 91       	pop	r25
+ 354:	8f 91       	pop	r24
+ 356:	0f 90       	pop	r0
+ 358:	0f be       	out	0x3f, r0	; 63
+ 35a:	0f 90       	pop	r0
+ 35c:	1f 90       	pop	r1
+ 35e:	18 95       	reti
+
+00000360 <ReadTemperature_StartConvert>:
+	void ReadTemperature_StartConvert(volatile uint8_t *port,volatile uint8_t *ddr,volatile uint8_t *port_pin,uint8_t pin)
+	{
+ 360:	ff 92       	push	r15
+ 362:	0f 93       	push	r16
+ 364:	1f 93       	push	r17
+ 366:	cf 93       	push	r28
+ 368:	df 93       	push	r29
+ 36a:	ec 01       	movw	r28, r24
+ 36c:	8b 01       	movw	r16, r22
+ 36e:	f2 2e       	mov	r15, r18
+		reset(port,ddr,pin);
+ 370:	42 2f       	mov	r20, r18
+ 372:	75 de       	rcall	.-790    	; 0x5e <reset>
+		SendByteToPort(port,ddr,pin,0xCC);//select all devices
+ 374:	2c ec       	ldi	r18, 0xCC	; 204
+ 376:	4f 2d       	mov	r20, r15
+ 378:	b8 01       	movw	r22, r16
+ 37a:	ce 01       	movw	r24, r28
+ 37c:	d9 de       	rcall	.-590    	; 0x130 <SendByteToPort>
+
+		SendByteToPort(port,ddr,pin,0x44);//start convert
+ 37e:	24 e4       	ldi	r18, 0x44	; 68
+ 380:	4f 2d       	mov	r20, r15
+ 382:	b8 01       	movw	r22, r16
+ 384:	ce 01       	movw	r24, r28
+ 386:	d4 de       	rcall	.-600    	; 0x130 <SendByteToPort>
+ 388:	df 91       	pop	r29
+ 38a:	cf 91       	pop	r28
+ 38c:	1f 91       	pop	r17
+ 38e:	0f 91       	pop	r16
+ 390:	ff 90       	pop	r15
+ 392:	08 95       	ret
+
+00000394 <main>:
+uint8_t ReadTemperature(volatile uint8_t *port,volatile uint8_t *ddr,volatile uint8_t *port_pin,uint8_t pin);
+void ReadTemperature_StartConvert(volatile uint8_t *port,volatile uint8_t *ddr,volatile uint8_t *port_pin,uint8_t pin);
+uint8_t temperature_byte1 = 0xFF;
+uint8_t temperature_byte2 = 0xFF;
+int main(void)
+{	DDRC=0xFF;
+ 394:	8f ef       	ldi	r24, 0xFF	; 255
+ 396:	84 bb       	out	0x14, r24	; 20
+	PORTC=0;
+ 398:	15 ba       	out	0x15, r1	; 21
+	DDRD=0xFF;
+ 39a:	81 bb       	out	0x11, r24	; 17
+	PORTD=0;
+ 39c:	12 ba       	out	0x12, r1	; 18
+	PORTD=0;
+ 39e:	12 ba       	out	0x12, r1	; 18
+	sei();
+ 3a0:	78 94       	sei
+	TIMSK|=1<<TOIE0;
+ 3a2:	89 b7       	in	r24, 0x39	; 57
+ 3a4:	81 60       	ori	r24, 0x01	; 1
+ 3a6:	89 bf       	out	0x39, r24	; 57
+	TCCR0 = 4;
+ 3a8:	84 e0       	ldi	r24, 0x04	; 4
+ 3aa:	83 bf       	out	0x33, r24	; 51
+	wdt_enable(5);
+ 3ac:	2d e0       	ldi	r18, 0x0D	; 13
+ 3ae:	88 e1       	ldi	r24, 0x18	; 24
+ 3b0:	90 e0       	ldi	r25, 0x00	; 0
+ 3b2:	0f b6       	in	r0, 0x3f	; 63
+ 3b4:	f8 94       	cli
+ 3b6:	a8 95       	wdr
+ 3b8:	80 93 41 00 	sts	0x0041, r24
+ 3bc:	0f be       	out	0x3f, r0	; 63
+ 3be:	20 93 41 00 	sts	0x0041, r18
+    while(1)
+    {	const uint8_t low_temp = 18;
+		const uint8_t high_temp = 20;
+		//uint8_t temp;
+		ReadTemperature_StartConvert(&PORTD,&DDRD,&PIND,PD4);
+ 3c2:	24 e0       	ldi	r18, 0x04	; 4
+ 3c4:	40 e3       	ldi	r20, 0x30	; 48
+ 3c6:	50 e0       	ldi	r21, 0x00	; 0
+ 3c8:	61 e3       	ldi	r22, 0x31	; 49
+ 3ca:	70 e0       	ldi	r23, 0x00	; 0
+ 3cc:	82 e3       	ldi	r24, 0x32	; 50
+ 3ce:	90 e0       	ldi	r25, 0x00	; 0
+ 3d0:	c7 df       	rcall	.-114    	; 0x360 <ReadTemperature_StartConvert>
+		ReadTemperature_StartConvert(&PORTD,&DDRD,&PIND,PD6);
+ 3d2:	26 e0       	ldi	r18, 0x06	; 6
+ 3d4:	40 e3       	ldi	r20, 0x30	; 48
+ 3d6:	50 e0       	ldi	r21, 0x00	; 0
+ 3d8:	61 e3       	ldi	r22, 0x31	; 49
+ 3da:	70 e0       	ldi	r23, 0x00	; 0
+ 3dc:	82 e3       	ldi	r24, 0x32	; 50
+ 3de:	90 e0       	ldi	r25, 0x00	; 0
+ 3e0:	bf df       	rcall	.-130    	; 0x360 <ReadTemperature_StartConvert>
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+ 3e2:	2f e7       	ldi	r18, 0x7F	; 127
+ 3e4:	8f e4       	ldi	r24, 0x4F	; 79
+ 3e6:	92 e1       	ldi	r25, 0x12	; 18
+ 3e8:	21 50       	subi	r18, 0x01	; 1
+ 3ea:	80 40       	sbci	r24, 0x00	; 0
+ 3ec:	90 40       	sbci	r25, 0x00	; 0
+ 3ee:	e1 f7       	brne	.-8      	; 0x3e8 <main+0x54>
+ 3f0:	00 c0       	rjmp	.+0      	; 0x3f2 <main+0x5e>
+ 3f2:	00 00       	nop
+		_delay_ms(1000);
+		temperature_byte1 = ReadTemperature(&PORTD,&DDRD,&PIND,PD4);
+ 3f4:	24 e0       	ldi	r18, 0x04	; 4
+ 3f6:	40 e3       	ldi	r20, 0x30	; 48
+ 3f8:	50 e0       	ldi	r21, 0x00	; 0
+ 3fa:	61 e3       	ldi	r22, 0x31	; 49
+ 3fc:	70 e0       	ldi	r23, 0x00	; 0
+ 3fe:	82 e3       	ldi	r24, 0x32	; 50
+ 400:	90 e0       	ldi	r25, 0x00	; 0
+ 402:	35 df       	rcall	.-406    	; 0x26e <ReadTemperature>
+ 404:	80 93 61 00 	sts	0x0061, r24
+		temperature_byte2 = ReadTemperature(&PORTD,&DDRD,&PIND,PD6);
+ 408:	26 e0       	ldi	r18, 0x06	; 6
+ 40a:	40 e3       	ldi	r20, 0x30	; 48
+ 40c:	50 e0       	ldi	r21, 0x00	; 0
+ 40e:	61 e3       	ldi	r22, 0x31	; 49
+ 410:	70 e0       	ldi	r23, 0x00	; 0
+ 412:	82 e3       	ldi	r24, 0x32	; 50
+ 414:	90 e0       	ldi	r25, 0x00	; 0
+ 416:	2b df       	rcall	.-426    	; 0x26e <ReadTemperature>
+ 418:	80 93 60 00 	sts	0x0060, r24
+
+		if(temperature_byte1 < low_temp) PORTD &=~(1<<PD5);
+ 41c:	80 91 61 00 	lds	r24, 0x0061
+ 420:	82 31       	cpi	r24, 0x12	; 18
+ 422:	08 f4       	brcc	.+2      	; 0x426 <main+0x92>
+ 424:	95 98       	cbi	0x12, 5	; 18
+		if(temperature_byte1 >= high_temp) PORTD |=(1<<PD5);
+ 426:	80 91 61 00 	lds	r24, 0x0061
+ 42a:	84 31       	cpi	r24, 0x14	; 20
+ 42c:	08 f0       	brcs	.+2      	; 0x430 <main+0x9c>
+ 42e:	95 9a       	sbi	0x12, 5	; 18
+		if(temperature_byte2 < low_temp) PORTD &=~(1<<PD2);
+ 430:	80 91 60 00 	lds	r24, 0x0060
+ 434:	82 31       	cpi	r24, 0x12	; 18
+ 436:	08 f4       	brcc	.+2      	; 0x43a <main+0xa6>
+ 438:	92 98       	cbi	0x12, 2	; 18
+		if(temperature_byte2 >= high_temp)  PORTD |= (1<<PD2);
+ 43a:	80 91 60 00 	lds	r24, 0x0060
+ 43e:	84 31       	cpi	r24, 0x14	; 20
+ 440:	08 f4       	brcc	.+2      	; 0x444 <main+0xb0>
+ 442:	bf cf       	rjmp	.-130    	; 0x3c2 <main+0x2e>
+ 444:	92 9a       	sbi	0x12, 2	; 18
+ 446:	bd cf       	rjmp	.-134    	; 0x3c2 <main+0x2e>
+
+00000448 <_exit>:
+ 448:	f8 94       	cli
+
+0000044a <__stop_program>:
+ 44a:	ff cf       	rjmp	.-2      	; 0x44a <__stop_program>
